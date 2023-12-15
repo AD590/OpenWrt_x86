@@ -8,7 +8,7 @@
 -	nftables \
 -	kmod-nft-offload \
 +	dnsmasq-full \
-+	firewall4 \
++	firewall \
 +	kmod-ipt-nat \
 +	kmod-ipt-nat6 \
  	odhcp6c \
