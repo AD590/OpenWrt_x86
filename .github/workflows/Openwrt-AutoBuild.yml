@@ -53,7 +53,7 @@ jobs:
           source "${GITHUB_WORKSPACE}/devices/${{matrix.target}}/settings.ini"
         fi
         echo "REPO_URL=https://github.com/openwrt/openwrt" >> $GITHUB_ENV
-        echo "REPO_BRANCH=openwrt_23.05" >> $GITHUB_ENV
+        echo "REPO_BRANCH=openwrt-23.05" >> $GITHUB_ENV
         echo "CONFIG_FILE=${CONFIG_FILE}" >> $GITHUB_ENV
         echo "DIY_SH=${DIY_SH}" >> $GITHUB_ENV
         echo "FREE_UP_DISK=${FREE_UP_DISK}" >> $GITHUB_ENV
