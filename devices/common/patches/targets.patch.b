@@ -4,11 +4,10 @@
  	mdadm
  # For router targets
  DEFAULT_PACKAGES.router:=\
--	dnsmasq \
+	dnsmasq-full \
 -	firewall4 \
 -	nftables \
 -	kmod-nft-offload \
-+	dnsmasq-full \
 +	firewall \
 +	kmod-ipt-nat \
 +	kmod-ipt-nat6 \
