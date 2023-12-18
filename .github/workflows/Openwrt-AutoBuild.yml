@@ -273,7 +273,7 @@ jobs:
 
     - name: Create release tag
       id: tag
-      if:  steps.organize.outputs.status == 'success' && && env.UPLOAD_FIRMWARE_FOR_RELEASE == 'true'
+      if:  steps.organize.outputs.status == 'success' &&  env.UPLOAD_FIRMWARE_FOR_RELEASE == 'true'
       run: |
         echo -e "${{ env.VERSION }}\n" >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT
