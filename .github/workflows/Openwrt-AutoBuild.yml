@@ -13,9 +13,7 @@ on:
   workflow_dispatch:
 
 env:
-  
-  PPPOE_USERNAME: ${{ secrets.PPPOE_USERNAME }}
-  PPPOE_PASSWD: ${{ secrets.PPPOE_PASSWD }}
+
   SCKEY: ${{ secrets.SCKEY }}
   TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
   TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
@@ -54,8 +52,7 @@ jobs:
         if [ -f "devices/${{matrix.target}}/settings.ini" ]; then
           source "${GITHUB_WORKSPACE}/devices/${{matrix.target}}/settings.ini"
         fi
-        echo "REPO_URL=https://github.com/openwrt/openwrt" >> $GITHUB_ENV
-        echo "REPO_BRANCH=openwrt-23.05" >> $GITHUB_ENV
+        echo "REPO_BRANCH=${REPO_BRANCH}" >> $GITHUB_ENV
         echo "CONFIG_FILE=${CONFIG_FILE}" >> $GITHUB_ENV
         echo "DIY_SH=${DIY_SH}" >> $GITHUB_ENV
         echo "FREE_UP_DISK=${FREE_UP_DISK}" >> $GITHUB_ENV
@@ -132,13 +129,14 @@ jobs:
 
     - name: Clone source code
       run: |
-        if [[ ! "${{ env.REPO_BRANCH }}" && "$REPO_URL" == "https://github.com/openwrt/openwrt" ]]; then
-            git clone $REPO_URL -b $REPO_BRANCH openwrt
-        elif [[ ! "${{ env.REPO_BRANCH }}" ]]; then
-            git clone $REPO_URL openwrt
+        if [! "${{ env.REPO_URL }}"]; then
+            echo "REPO_URL=https://github.com/openwrt/openwrt" >> $GITHUB_ENV          
+        if [! "${{ env.REPO_BRANCH }}"]; then
+            git clone --depth 0 $REPO_URL openwrt
+            echo "git clone --depth 0 $REPO_URL openwrt"
         else
-            git clone $REPO_URL -b ${{ env.REPO_BRANCH }} openwrt
-            echo "git clone $REPO_URL -b ${{ env.REPO_BRANCH }} openwrt"
+            git clone --depth 0 $REPO_URL -b ${{ env.REPO_BRANCH }} openwrt
+            echo "git clone --depth 0 $REPO_URL -b ${{ env.REPO_BRANCH }} openwrt"
         fi
     
     - name: Free up disk space
