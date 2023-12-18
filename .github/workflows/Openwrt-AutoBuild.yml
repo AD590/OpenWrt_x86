@@ -233,8 +233,7 @@ jobs:
       run: |
         shopt -s extglob
         cd openwrt
-        echo -e "single thread compile"
-        make V=s -j1
+        echo -e "$(($(nproc)+1)) thread compile" & make  || echo -e "single thread compile" & make -j1
         sed -i "s/# CONFIG_IB is not set/CONFIG_IB=y/" .config
         rm -rf staging_dir/toolchain-*/bin/*openwrt-linux-musl-lto-dump
         rm -rf staging_dir/toolchain-*/initial
