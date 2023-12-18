@@ -137,10 +137,10 @@ jobs:
                  
         if [ ! "${{ env.REPO_BRANCH }}" ]; then
             git clone --depth 1 $REPO_URL openwrt
-            echo "git clone --depth 0 $REPO_URL openwrt"
+            echo "git clone --depth 1 $REPO_URL openwrt"
         else
             git clone --depth 1 $REPO_URL -b ${{ env.REPO_BRANCH }} openwrt
-            echo "git clone --depth 0 $REPO_URL -b ${{ env.REPO_BRANCH }} openwrt"
+            echo "git clone --depth 1 $REPO_URL -b ${{ env.REPO_BRANCH }} openwrt"
         fi
     
     - name: Free up disk space
