@@ -26,8 +26,8 @@ env:
 
 jobs:
   build:
-    #runs-on: Ubuntu-22.04
-    runs-on: self-hosted
+    runs-on: Ubuntu-22.04
+    #runs-on: self-hosted
     
     
     name: Build ${{matrix.target}}
