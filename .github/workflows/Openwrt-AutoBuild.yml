@@ -130,11 +130,11 @@ jobs:
 
     - name: Clone source code
       run: |
-        if [! "${{ env.REPO_URL }}"]; then
+        if [ ! "${{ env.REPO_URL }}" ]; then
             echo "REPO_URL=https://github.com/openwrt/openwrt" >> $GITHUB_ENV
         fi
                  
-        if [! "${{ env.REPO_BRANCH }}"]; then
+        if [ ! "${{ env.REPO_BRANCH }}" ]; then
             git clone --depth 0 $REPO_URL openwrt
             echo "git clone --depth 0 $REPO_URL openwrt"
         else
